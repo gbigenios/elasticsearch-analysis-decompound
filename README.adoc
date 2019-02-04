@@ -16,7 +16,7 @@ of http://asv.informatik.uni-leipzig.de/staff/Chris_Biemann[Chris Biemann],
 Automatische Sprachverarbeitung of Leipzig University.
 
 Lucene comes with two compound word token filters, a dictionary- and a hyphenation-based variant.
-Both of them have a disadvantage, they require loading a word list in memory before they run. 
+Both of them have a disadvantage, they require loading a word list in memory before they run.
 This decompounder does not require word lists, it can process german language text out of the box.
 The decompounder uses prebuilt _Compact Patricia Tries_ for efficient word segmentation provided
 by the ASV toolbox.
@@ -88,12 +88,12 @@ POST /test/docs/_search?explain
 }
 ----
 
-"Die Jahresfeier der Rechtsanwaltskanzleien auf dem Donaudampfschiff hat viel Ökosteuer gekostet" will be tokenized into 
+"Die Jahresfeier der Rechtsanwaltskanzleien auf dem Donaudampfschiff hat viel Ökosteuer gekostet" will be tokenized into
 "Die", "Die", "Jahresfeier", "Jahr", "feier", "der", "der", "Rechtsanwaltskanzleien", "Recht", "anwalt", "kanzlei", "auf", "auf", "dem",  "dem", "Donaudampfschiff", "Donau", "dampf", "schiff", "hat", "hat", "viel", "viel", "Ökosteuer", "Ökosteuer", "gekostet", "gekosten"
 
 It is recommended to add the https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-unique-tokenfilter.html[Unique token filter] to skip tokens that occur more than once.
 
-The input "Ein schöner Tag in Köln im Café an der Straßenecke" will be tokenized into 
+The input "Ein schöner Tag in Köln im Café an der Straßenecke" will be tokenized into
 "Ein", "schoner", "Tag", "in", "Koln", "im", "Café", "an", "der", "Strassenecke".
 
 # Threshold
@@ -116,9 +116,9 @@ The default threshold value is 0.51. You can modify it in the settings::
     }
 }
 ```
-      
+
 # Subwords
-      
+
 Sometimes only the decomposed subwords should be indexed. For this, you can use the parameter `"subwords_only": true`
 
 ```
@@ -168,7 +168,7 @@ The usage of decompounds can lead to undesired results regarding phrase queries.
 
 # References
 
-The Compact Patricia Trie data structure can be found in 
+The Compact Patricia Trie data structure can be found in
 
 * Morrison, D.: Patricia - practical algorithm to retrieve information coded in alphanumeric. Journal of ACM, 1968, 15(4):514–534*
 
