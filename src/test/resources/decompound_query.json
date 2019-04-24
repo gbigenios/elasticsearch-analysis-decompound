@@ -1,46 +1,50 @@
 {
-  "settings": {
-    "index": {
-      "number_of_shards": 1,
-      "number_of_replicas": 0,
-      "analysis": {
-      	"filter": {
-          "decomp":{
-            "type" : "decompound"
-          }
-        },
-		"analyzer": {
-		  "decomp": {
-		    "type": "custom",
-			"tokenizer" : "standard",
-			"filter" : [
-			  "decomp",
-			  "lowercase"
-			]
-		  },
-		  "lowercase": {
-		    "type": "custom",
-			"tokenizer" : "standard",
-			"filter" : [
-			  "lowercase"
-			]
-		  }
+	"settings": {
+		"index": {
+			"number_of_shards": 1,
+			"number_of_replicas": 0,
+			"analysis": {
+				"filter": {
+					"decomp": {
+						"type": "decompound"
+					},
+					"baseform": {
+						"type": "baseform"
+					}
+				},
+				"analyzer": {
+					"decomp": {
+						"type": "custom",
+						"tokenizer": "standard",
+						"filter": [
+							"decomp",
+							"lowercase"
+						]
+					},
+					"lowercase": {
+						"type": "custom",
+						"tokenizer": "standard",
+						"filter": [
+							"baseform",
+							"lowercase"
+						]
+					}
+				}
+			}
 		}
-	  }
-    }
-  },
-  "mappings": {
-    "_doc": {
-      "properties": {
-        "text": {
-        	"type": "text",
-        	"analyzer": "decomp",
-        	"search_analyzer": "lowercase"
-        },
-        "keyword": {
-        	"type": "keyword"
-        }
-      }
-    }
-  }
+	},
+	"mappings": {
+		"_doc": {
+			"properties": {
+				"text": {
+					"type": "text",
+					"analyzer": "decomp",
+					"search_analyzer": "lowercase"
+				},
+				"keyword": {
+					"type": "keyword"
+				}
+			}
+		}
+	}
 }

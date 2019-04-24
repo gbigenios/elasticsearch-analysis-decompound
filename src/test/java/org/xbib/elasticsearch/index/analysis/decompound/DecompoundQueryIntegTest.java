@@ -33,6 +33,7 @@ import org.elasticsearch.transport.Netty4Plugin;
 import org.junit.Before;
 import org.xbib.elasticsearch.index.query.decompound.ExactPhraseQueryBuilder;
 import org.xbib.elasticsearch.index.query.decompound.ExactQueryStringQueryBuilder;
+import org.xbib.elasticsearch.plugin.analysis.baseform.AnalysisBaseformPlugin;
 import org.xbib.elasticsearch.plugin.analysis.decompound.AnalysisDecompoundPlugin;
 
 //@TestLogging("level:DEBUG")
@@ -40,7 +41,7 @@ public class DecompoundQueryIntegTest extends ESIntegTestCase {
 
     @Override
     protected Collection<Class<? extends Plugin>> nodePlugins() {
-        return Arrays.asList(Netty4Plugin.class, AnalysisDecompoundPlugin.class);
+        return Arrays.asList(Netty4Plugin.class, AnalysisDecompoundPlugin.class, AnalysisBaseformPlugin.class);
     }
     
     public void testPluginIsLoaded() {
