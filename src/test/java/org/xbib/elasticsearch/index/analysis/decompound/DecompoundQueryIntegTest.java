@@ -14,8 +14,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.cluster.node.info.NodeInfo;
 import org.elasticsearch.action.admin.cluster.node.info.NodesInfoResponse;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeAction;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequestBuilder;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.xcontent.LoggingDeprecationHandler;
@@ -141,7 +145,11 @@ public class DecompoundQueryIntegTest extends ESIntegTestCase {
         List<IndexRequestBuilder> reqs = new ArrayList<>();
         reqs.add(client().prepareIndex("test", "_doc", "1").setSource("text", "deutsche Spielbankgesellschaft als Bank"));
         indexRandom(true, false, reqs);
-      
+        
+//        AnalyzeRequestBuilder analyzeRequestBuilder = AnalyzeAction.INSTANCE.newRequestBuilder(client());
+//        ActionFuture<AnalyzeResponse> actionFuture = analyzeRequestBuilder.setIndex("test").setField("text").setText("deutsche Spielbankgesellschaft als Bank").setExplain(true).execute();
+//        AnalyzeResponse analyzeResponse = actionFuture.actionGet();
+//        System.out.println(analyzeResponse);
         {
         	MinFrequencyTermQueryBuilder minFrequencyTermQueryBuilder = new MinFrequencyTermQueryBuilder("text", "bank", 2);
 			ExactPhraseQueryBuilder exactPhraseQueryBuilder = new ExactPhraseQueryBuilder(minFrequencyTermQueryBuilder, false);

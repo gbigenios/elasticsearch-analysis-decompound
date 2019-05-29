@@ -18,6 +18,7 @@
 						"tokenizer": "standard",
 						"filter": [
 							"decomp",
+							"baseform",
 							"lowercase"
 						]
 					},
@@ -25,7 +26,6 @@
 						"type": "custom",
 						"tokenizer": "standard",
 						"filter": [
-							"baseform",
 							"lowercase"
 						]
 					}
